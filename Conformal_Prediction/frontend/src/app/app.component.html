@@ -1,0 +1,41 @@
+<!-- Header with Fond 2 and Overlay -->
+<header class="page-header">
+  <div class="header-overlay"></div>
+  <div class="header-content">
+    <h1>L'élégance de la précision : La mathématique au service de la certitude.</h1>
+  </div>
+</header>
+
+<!-- Main Workspace (Solid off-white column) -->
+<main class="main-content">
+
+  <div class="intro-text">
+    <p>Définissez votre estimation pour générer un intervalle de confiance mathématiquement garanti.</p>
+  </div>
+
+  <div class="simulator-controls">
+    <!-- Prediction Input -->
+    <div class="input-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Estimation ponctuelle</mat-label>
+        <input class="operational-input" matInput type="number" [(ngModel)]="prediction" (ngModelChange)="onValueChange()">
+        <span matSuffix>€</span>
+      </mat-form-field>
+    </div>
+
+    <!-- Confidence Slider -->
+    <div class="slider-container">
+      <label class="slider-label">Ajustez le curseur pour définir le niveau de rigueur statistique.</label>
+      <mat-slider min="80" max="99" step="1" discrete="true">
+        <input matSliderThumb [(ngModel)]="confidence" (ngModelChange)="onValueChange()">
+      </mat-slider>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-container" [class.fading]="isFading">
+    <p class="result-label">Voici votre zone de prédiction sécurisée.</p>
+    <p class="interval-text">{{ lowerBound | number:'1.0-0' }}€ &mdash; {{ upperBound | number:'1.0-0' }}€</p>
+  </div>
+
+</main>

@@ -1,0 +1,159 @@
+/*
+  V6 Style Overhaul: Blurred Background & Solid Workspace
+*/
+
+/* Blurred Fond 1 on the body's pseudo-element */
+:host {
+  display: block;
+  position: relative;
+  background-color: #f4efe9; /* Fallback color */
+  font-family: 'Lora', serif;
+}
+
+/* This pseudo-element creates the blurred background effect */
+:host::before {
+  content: '';
+  position: fixed;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  background-image: url('../assets/images/fond1.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) saturate(0.8);
+  z-index: -1; /* Place it behind everything */
+}
+
+
+/* Header with Fond 2 and Overlay */
+.page-header {
+  position: relative;
+  padding: 24px;
+  text-align: center;
+  background-image: url('../assets/images/fond2.jpg');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* White veil */
+  backdrop-filter: blur(5px);
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+}
+
+
+/* Main solid off-white workspace */
+.main-content {
+  max-width: 800px;
+  margin: 48px auto;
+  background: #fdfcfb; /* Off-white */
+  padding: 56px;
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.intro-text p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0 auto 48px auto;
+  max-width: 30ch;
+}
+
+/* Typography for results */
+.result-label {
+  font-size: 1rem;
+  color: #777;
+}
+
+.interval-text {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 4rem; /* Imposing size */
+  letter-spacing: 0.02em;
+  color: #111;
+  margin: 8px 0 0 0;
+}
+
+
+/* --- Operational Controls --- */
+.simulator-controls {
+  margin: 48px 0;
+  padding: 32px;
+    background-color: rgba(0,0,0,0.02) !important;
+  border-radius: 12px;
+}
+
+.slider-label {
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Input with visible arrows */
+.input-container {
+  margin-top: 32px;
+}
+.operational-input {
+  text-align: center !important;
+}
+
+/* Force show and style number input spinners (WebKit/Blink) */
+.operational-input::-webkit-inner-spin-button,
+.operational-input::-webkit-outer-spin-button {
+  opacity: 1 !important;
+  -webkit-appearance: inner-spin-button !important;
+  cursor: pointer;
+  position: relative;
+  right: -10px; /* Adjust position */
+}
+/* Basic styling for Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* Ultra-thin slider with matte black accent */
+.mat-mdc-slider {
+  width: 100%;
+  --mdc-slider-track-height: 1px;
+}
+.mat-mdc-slider.mat-primary {
+  --mdc-slider-handle-color: #222; /* Matte black */
+  --mdc-slider-focus-handle-color: #000;
+  --mdc-slider-hover-handle-color: #000;
+  --mdc-slider-active-track-color: #222;
+  --mdc-slider-inactive-track-color: #ddd;
+}
+.mat-mdc-slider .mdc-slider__thumb-knob {
+  border: 2px solid #222 !important;
+  background-color: #fff !important;
+  height: 18px !important;
+  width: 18px !important;
+}
+
+/* Result fade transition */
+.results-container {
+  margin-top: 24px;
+  transition: opacity 0.4s ease-out;
+}
+.results-container.fading {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
